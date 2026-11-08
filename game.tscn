@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c1t5bsjc01png"]
+
+[ext_resource type="Texture2D" uid="uid://b6b7cr70smg64" path="res://tilemap.png" id="1_e2o6t"]
+[ext_resource type="Script" uid="uid://30uluxlucs3d" path="res://tile_map_layer.gd" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://d4a4chv6n8eoc" path="res://algorithms.gd" id="3_fc0e3"]
+[ext_resource type="Script" uid="uid://bavniie6egdeu" path="res://room_generator.gd" id="4_7jktm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fc0e3"]
+texture = ExtResource("1_e2o6t")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j6d7c"]
+sources/0 = SubResource("TileSetAtlasSource_fc0e3")
+
+[node name="Game" type="Node2D" unique_id=810409076]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=998051491 node_paths=PackedStringArray("maze_generator", "room_generator")]
+tile_set = SubResource("TileSet_j6d7c")
+script = ExtResource("2_feb5d")
+maze_generator = NodePath("MazeGenerator")
+room_generator = NodePath("RoomGenerator")
+
+[node name="MazeGenerator" type="Node" parent="TileMapLayer" unique_id=1056446700 node_paths=PackedStringArray("tile_map")]
+script = ExtResource("3_fc0e3")
+tile_map = NodePath("..")
+
+[node name="RoomGenerator" type="Node" parent="TileMapLayer" unique_id=614333474 node_paths=PackedStringArray("tile_map")]
+script = ExtResource("4_7jktm")
+tile_map = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=399805147]
+zoom = Vector2(0.5, 0.5)
