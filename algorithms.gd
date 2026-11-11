@@ -1,3 +1,4 @@
+class_name  MazeGenerator
 extends Node
 
 @export var tile_map: TileMapLayer
@@ -42,8 +43,6 @@ func MazeRecursiveBacktracker() -> void:
 	steps.append(startingCell)
 	
 	while (steps.size() > 0):
-		await get_tree().process_frame
-		await  get_tree().create_timer(0.01).timeout
 		var surroundingCells:= getSurroundingCells(currentCell);
 		
 		if not surroundingCells.size() == 0:
@@ -63,12 +62,11 @@ func MazeRecursiveBacktracker() -> void:
 
 
 func MazeRecursiveDivision() -> void:
-	var maxRoomCount := 500
+	var maxRoomCount := 100
 	var rooms:Array[Rect2i] = []
 	rooms.append_array( await devideRoom(Rect2i(-MAZE_SIZE.x+1, -MAZE_SIZE.y+1, MAZE_SIZE.x*2-1, MAZE_SIZE.y*2-1)))
 	print(rooms)
 	while(maxRoomCount > rooms.size()):
-		await  any_input	
 		var newRooms:Array[Rect2i]
 		var deleteRooms:Array[Rect2i]
 		for room in rooms:

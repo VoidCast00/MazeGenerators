@@ -2,22 +2,18 @@ extends TileMapLayer
 
 @export var MAZE_SIZE:Vector2i = Vector2i(50,50)
 
-
-@export var maze_generator: Node
+@export var flood: Flood
+@export var maze_generator: MazeGenerator
 @export var room_generator: Node
 const WALL_ATLAS := Vector2i(1, 0)
 
 
-
-
 func _ready() -> void:
-	resetMaze(false)
+	resetMaze(true)
 	#room_generator.generateRandomRooms(10)
-	await get_tree().create_timer(8).timeout
-	maze_generator.MazeRecursiveBacktracker()
-
-
-
+	#await get_tree().create_timer(8).timeout
+	maze_generator.MazeRecursiveDivision()
+	flood.startFlood(Vector2i(0,0))
 
 
 
