@@ -13,6 +13,7 @@ const WALL_ATLAS := Vector2i(1, 0)
 func _ready() -> void:
 	resetMaze(false)
 	#room_generator.generateRandomRooms(10)
+	await get_tree().create_timer(8).timeout
 	maze_generator.MazeRecursiveBacktracker()
 
 

@@ -33,3 +33,4 @@ tile_map = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=399805147]
 zoom = Vector2(0.5, 0.5)
+limit_enabled = false
