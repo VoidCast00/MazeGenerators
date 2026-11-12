@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-@export var MAZE_SIZE:Vector2i = Vector2i(50,50)
+@export var MAZE_SIZE:Vector2i = Vector2i(100,100)
 
 @export var flood: Flood
 @export var maze_generator: MazeGenerator
